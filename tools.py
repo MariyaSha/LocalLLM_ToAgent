@@ -249,19 +249,49 @@ def check_websites(results):
 
     for result in results:
         try:
-            content = read_page(result["url"])
+            response = requests.get(
+                result["url"],
+                headers=HEADERS,
+                timeout=20,
+            )
 
-            blocked = any(word in content.lower() for word in [
+            if response.status_code != 200:
+                continue
+
+            soup = BeautifulSoup(
+                response.text,
+                "html.parser",
+            )
+
+            text = soup.get_text(
+                " ",
+                strip=True,
+            )
+
+            blocked = [
                 "cloudflare",
                 "access denied",
-                "security verification",
-                "just a moment"
-            ])
+                "just a moment",
+                "verify you are human",
+                "security check",
+            ]
 
-            if content and not blocked:
-                valid.append(result)
+            if (
+                len(text) < 500
+                or any(word in text.lower() for word in blocked)
+            ):
+                continue
 
-        except:
-            pass
+            pages = discover_pages(
+                result["url"]
+            )
+
+            if len(pages) < 2:
+                continue
+
+            valid.append(result)
+
+        except requests.RequestException:
+            continue
 
     return valid

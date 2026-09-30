@@ -7,6 +7,11 @@ Treat every competitor equally and preserve each competitor's name.
 
 Do not invent information.
 
+When a SPECIFIC detail is missing from the research, write
+"Not found on the reviewed pages" for that detail only.
+
+Never use "Not found on the reviewed pages" as the entire report.
+
 Do not treat information that was not found as proof that something
 does not exist.
 
@@ -71,11 +76,3 @@ Output the final report only.
 RESEARCH:
 
 {research}
-
-Never assume something does not exist just because you did not find it.
-
-Say:
-"Not found on the reviewed pages."
-
-Do not say:
-"They do not offer it."

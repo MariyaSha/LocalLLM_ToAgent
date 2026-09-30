@@ -9,7 +9,7 @@ from tools import (
 )
 
 CITY = "Vancouver, BC"
-TRADE = "plumber"
+TRADE = "HVAC"
 
 
 # Find competitors
@@ -49,7 +49,11 @@ for i, competitor in enumerate(competitors, 1):
         pages=pages,
     )
 
-    print(f"   ✓ {len(pages)} pages selected")
+    if not pages:
+        pages = [website]
+        print("🐍 No pages chosen - using homepage")
+    else:
+        print(f"   ✓ {len(pages)} pages selected")
 
     print("✨ Researching pages...")
     notes = research_webpages(
