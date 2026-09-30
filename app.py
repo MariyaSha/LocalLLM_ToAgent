@@ -2,71 +2,93 @@ from tools import (
     ask,
     choose,
     search_query,
+    check_websites,
     search_homepage,
     research_webpages,
-    save_report
+    save_report,
 )
 
-CITY = "Vancouver"
-TRADE = "pub"
+CITY = "Vancouver, BC"
+TRADE = "plumber"
 
 
 # Find competitors
+print("\n🐍 Searching businesses...")
 results = search_query(CITY, TRADE)
+results = check_websites(results)
 
-websites = choose(
+print("🧠 Choosing competitors...")
+competitors = choose(
     "competitors.md",
     city=CITY,
     trade=TRADE,
-    results=results
+    results=results,
 )
+
+for competitor in competitors:
+    print("   ✓", competitor["name"])
 
 
 # Research competitors
 research = []
 
-for i, website in enumerate(websites, 1):
+for i, competitor in enumerate(competitors, 1):
+    name = competitor["name"]
+    website = competitor["url"]
 
+    print(f"\n🐍 Exploring {name}...")
     homepage, pages = search_homepage(website)
 
+    print("🧠 Choosing pages...")
     pages = choose(
-        "pages.md",
+        "choose_pages.md",
         trade=TRADE,
+        name=name,
         website=website,
         homepage=homepage,
-        pages=pages
+        pages=pages,
     )
 
+    print(f"   ✓ {len(pages)} pages selected")
+
+    print("✨ Researching pages...")
     notes = research_webpages(
         TRADE,
+        name,
         website,
-        pages
+        pages,
     )
 
+    print("✨ Creating competitor overview...")
     company = ask(
         "company.md",
         trade=TRADE,
+        name=name,
         website=website,
-        notes=notes
+        notes=notes,
     )
 
-    save_report(
-        f"competitor_{i}.md",
-        company
-    )
+    filename = f"competitor_{i}.md"
+    save_report(filename, company)
+    print(f"🐍 Saved {filename}")
 
-    research.append(company)
+    research.append({
+        "name": name,
+        "website": website,
+        "overview": company,
+    })
 
 
 # Create final report
+print("\n✨ Creating final market research report...")
 report = ask(
     "report.md",
+    max_tokens=3000,
     city=CITY,
     trade=TRADE,
-    research=research
+    research=research,
 )
 
-save_report(
-    "market_research.md",
-    report
-)
+save_report("market_research.md", report)
+print("🐍 Saved market_research.md")
+print("\n✓ Research complete!")

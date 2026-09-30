@@ -64,9 +64,12 @@ def choose(file, **data):
         answer
     )
 
-    return json.loads(
-        match.group()
-    )
+    if not match:
+        print("\nNemotron replied:")
+        print(answer)
+        raise ValueError("Nemotron did not return a list.")
+
+    return json.loads(match.group())
 
 
 # SEARCH TOOLS
@@ -215,7 +218,7 @@ def read_page(url):
 
 # RESEARCH TOOLS
 
-def research_webpages(trade, website, pages):
+def research_webpages(trade, name, website, pages):
     notes = []
 
     for url in pages:
@@ -225,6 +228,7 @@ def research_webpages(trade, website, pages):
             ask(
                 "research.md",
                 trade=trade,
+                name=name,
                 website=website,
                 url=url,
                 content=content
@@ -239,3 +243,25 @@ def save_report(file, content):
         content,
         encoding="utf-8"
     )
+
+def check_websites(results):
+    valid = []
+
+    for result in results:
+        try:
+            content = read_page(result["url"])
+
+            blocked = any(word in content.lower() for word in [
+                "cloudflare",
+                "access denied",
+                "security verification",
+                "just a moment"
+            ])
+
+            if content and not blocked:
+                valid.append(result)
+
+        except:
+            pass
+
+    return valid

@@ -1,0 +1,27 @@
+/no_think
+
+You are researching this {trade} competitor:
+
+Company: {name}
+Website: {website}
+
+Homepage content:
+
+{homepage}
+
+The website discovery process found these URLs:
+
+{pages}
+
+Choose only the pages worth investigating for competitive research.
+
+Look for pages likely to reveal useful information about the business,
+its offerings, prices, customers, positioning, promotions, reputation,
+locations, content strategy, or competitive advantages.
+
+Ignore images, PDFs, media files, duplicate URLs, technical files,
+legal pages, and irrelevant utility pages.
+
+Be selective.
+
+Return ONLY a JSON array containing the URLs worth researching.
