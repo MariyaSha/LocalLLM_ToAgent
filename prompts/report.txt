@@ -1,0 +1,72 @@
+/no_think
+
+Create a competitive intelligence report about {trade} businesses
+in {city} using ONLY the competitor research below.
+
+Treat every competitor equally.
+
+Do not invent information.
+
+Do not treat information that was not found as proof that something
+does not exist.
+
+Do not recommend generic marketing tactics unless the research
+provides a specific competitive reason for them.
+
+Distinguish between:
+
+- things customers actually said in testimonials or reviews
+- things the company claims or promotes about itself
+
+Do not describe company marketing as proof of what customers value.
+
+Create:
+
+# Competitor Intelligence Report
+
+## Executive Summary
+
+## Competitor Profiles
+
+For every competitor cover the most useful available information about:
+
+- Website Structure and Content Strategy
+- Company Overview
+- Products and Services
+- Pricing, Offers and Promotions
+- Geographic Coverage
+- Target Customers
+- Customer Acquisition Strategy
+- Positioning and Sales Claims
+- Testimonials and Customer Proof
+- Trust Signals
+- Social Media and Online Presence
+- Competitive Strengths
+- Competitive Gaps
+
+## Side-by-Side Competitive Comparison
+
+## What Customers Appear to Value
+
+Base this section only on customer testimonials, reviews, or direct
+customer evidence.
+
+If customer evidence is insufficient, say so.
+
+## Opportunities to Outperform These Competitors
+
+Include only opportunities directly supported by the research.
+
+For each opportunity identify:
+
+- Evidence
+- Gap
+- Opportunity
+
+## Key Competitive Takeaways
+
+Output the final report only.
+
+RESEARCH:
+
+{research}
