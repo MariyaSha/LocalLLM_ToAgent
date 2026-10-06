@@ -19,7 +19,7 @@ results = check_websites(results)
 
 print("🧠 Choosing competitors...")
 competitors = choose(
-    "competitors.md",
+    "0_choose_competitors.md",
     city=CITY,
     trade=TRADE,
     results=results,
@@ -41,7 +41,7 @@ for i, competitor in enumerate(competitors, 1):
 
     print("🧠 Choosing pages...")
     pages = choose(
-        "choose_pages.md",
+        "1_choose_pages.md",
         trade=TRADE,
         name=name,
         website=website,
@@ -65,7 +65,7 @@ for i, competitor in enumerate(competitors, 1):
 
     print("✨ Creating competitor overview...")
     company = ask(
-        "company.md",
+        "3_create_competitor_overview.md",
         trade=TRADE,
         name=name,
         website=website,
@@ -86,7 +86,7 @@ for i, competitor in enumerate(competitors, 1):
 # Create final report
 print("\n✨ Creating final market research report...")
 report = ask(
-    "report.md",
+    "4_create_final_report.md",
     max_tokens=3000,
     city=CITY,
     trade=TRADE,

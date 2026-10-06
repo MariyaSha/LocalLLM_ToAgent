@@ -226,7 +226,7 @@ def research_webpages(trade, name, website, pages):
 
         notes.append(
             ask(
-                "research.md",
+                "2_research_pages.md",
                 trade=trade,
                 name=name,
                 website=website,
