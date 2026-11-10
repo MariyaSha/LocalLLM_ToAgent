@@ -2,12 +2,13 @@ torch
 torchvision
 
 transformers[kernels]
-einops
 accelerate
 safetensors
+einops
 
 requests
 beautifulsoup4
 
 diffusers
 pillow
+jupyter

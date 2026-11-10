@@ -17,6 +17,10 @@ Clone the repository and install the dependencies:
 ```bash
 git clone https://github.com/MariyaSha/LocalLLM_ToAgent.git
 cd LocalLLM_ToAgent
+
+conda create -n local_agent python=3.12
+conda activate local_agent
+
 pip install -r requirements.txt
 ```
 
@@ -60,40 +64,59 @@ The agent generates `competitor_1.md`, `competitor_2.md`, and `market_research.m
 
 ### Example Output
 
-Here's an example of the agent running on an **NVIDIA RTX 5090 (32 GB VRAM)**:
+Here's an example of the agent running on an **NVIDIA RTX 5090 (32 GB VRAM)**. This is the exact output I received:
 
 ```text
+🐍 Loading NVIDIA Nemotron...
+You are using version 3 of 'kernels-community/liger-kernels', but version 4 is available.
+WARNING:kernels._versions:You are using version 3 of 'kernels-community/mamba-ssm', but version 4 is available.
+WARNING:kernels._versions:You are using version 3 of 'kernels-community/mamba-ssm', but version 4 is available.
+WARNING:kernels._versions:You are using version 3 of 'kernels-community/mamba-ssm', but version 4 is available.
+WARNING:kernels._versions:You are using version 3 of 'kernels-community/mamba-ssm', but version 4 is available.
+WARNING:kernels._versions:You are using version 3 of 'kernels-community/mamba-ssm', but version 4 is available.
+🐍 Nemotron loaded!
+
 🐍 Searching businesses...
 🧠 Choosing competitors...
+   ✓ B.C HVAC
    ✓ Sundawn Integrated Services
-   ✓ Harbour Energy
-⏱ Competitors selected (5.8s)
+⏱ Competitors selected (2.6s)
+
+🐍 Exploring B.C HVAC...
+🧠 Choosing pages...
+   ✓ 8 pages selected (3.1s)
+✨ Researching pages...
+   ✓ https://bchvacservices.ca (15.2s)
+   ✓ https://bchvacservices.ca/about (11.8s)
+   ✓ https://bchvacservices.ca/priority-one (12.9s)
+   ✓ https://bchvacservices.ca/priority-one-app (8.5s)
+   ✓ https://bchvacservices.ca/services (15.0s)
+   ✓ https://bchvacservices.ca/rebates (16.5s)
+   ✓ https://bchvacservices.ca/service-areas (9.1s)
+   ✓ https://bchvacservices.ca/contact (12.2s)
+✨ Creating competitor overview...
+🐍 Saved competitor_1.md (31.1s)
 
 🐍 Exploring Sundawn Integrated Services...
 🧠 Choosing pages...
-   ✓ 10 pages selected (3.1s)
+   ✓ 8 pages selected (3.0s)
 ✨ Researching pages...
-   ✓ https://sundawn.com (7.5s)
-   ✓ https://sundawn.com/about/ (13.1s)
-   ...
+   ✓ https://sundawn.com (12.0s)
+   ✓ https://sundawn.com/about/ (16.4s)
+   ✓ https://sundawn.com/nationwide-hvac-services/ (16.5s)
+   ✓ https://sundawn.com/hvac-services/ (7.5s)
+   ✓ https://sundawn.com/boiler-service/ (14.2s)
+   ✓ https://sundawn.com/refrigeration/ (13.1s)
+   ✓ https://sundawn.com/cooling-towers/ (13.0s)
+   ✓ https://sundawn.com/contact-us/ (9.2s)
 ✨ Creating competitor overview...
-🐍 Saved competitor_1.md (22.8s)
-
-🐍 Exploring Harbour Energy...
-🧠 Choosing pages...
-   ✓ 10 pages selected (2.8s)
-✨ Researching pages...
-   ✓ https://harbourenergy.ca (12.2s)
-   ✓ https://harbourenergy.ca/services (8.6s)
-   ...
-✨ Creating competitor overview...
-🐍 Saved competitor_2.md (25.3s)
+🐍 Saved competitor_2.md (23.4s)
 
 ✨ Creating final market research report...
-🐍 Saved market_research.md (37.2s)
+🐍 Saved market_research.md (41.7s)
 
 ✓ Research complete!
-⏱ Total execution time: 331.2s
+⏱ Total execution time: 319.8s
 ```
 
 **Total execution time: ~5.5 minutes**, excluding model initialization. Results and execution times will vary depending on your hardware and the websites being researched.

@@ -15,6 +15,10 @@ from transformers.utils import logging
 logging.set_verbosity_error()
 logging.disable_progress_bar()
 
+# remove triton warning
+import os
+os.environ["TRITON_DEFAULT_FP_FUSION"] = "1"
+
 HEADERS = {
     "User-Agent": "Mozilla/5.0"
 }
@@ -22,6 +26,7 @@ HEADERS = {
 # LOAD MODEL
 
 MODEL = "nvidia/NVIDIA-Nemotron-Nano-9B-v2"
+print("🐍 Loading NVIDIA Nemotron...", flush=True)
 
 model = AutoModelForCausalLM.from_pretrained(
     MODEL,
@@ -37,6 +42,8 @@ llm = pipeline(
     model=model,
     tokenizer=tokenizer,
 )
+
+print("🐍 Nemotron loaded!", flush=True)
 
 # AI TOOLS
 
