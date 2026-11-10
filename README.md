@@ -36,7 +36,12 @@ A beginner-friendly Jupyter notebook that demonstrates a simple AI agent loop.
 - **Flux** generates images based on Qwen's descriptions.
 - **Python** controls the loop until Qwen approves an image.
 
-Open `quickstart/Quickstart.ipynb` in Jupyter or VS Code and follow the cells step by step.
+Open `quickstart/Quickstart.ipynb` in Jupyter or VS Code and follow the cells step by step. Such that:
+
+bash```
+cd quickstart
+jupyter lab
+```
 
 🤖 **Models:** Qwen3-VL-8B-Instruct + FLUX.1-schnell  
 💾 **Storage:** ~50 GB combined
