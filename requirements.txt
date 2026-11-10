@@ -2,6 +2,7 @@ torch
 torchvision
 
 transformers[kernels]
+einops
 accelerate
 safetensors
 

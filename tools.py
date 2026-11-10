@@ -3,30 +3,40 @@ import re
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
 from xml.etree import ElementTree
-
+import time
+from concurrent.futures import ThreadPoolExecutor
 import requests
 import torch
 from bs4 import BeautifulSoup
+from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers import pipeline
+
 from transformers.utils import logging
-
-
 logging.set_verbosity_error()
+logging.disable_progress_bar()
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0"
 }
 
-
 # LOAD MODEL
+
+MODEL = "nvidia/NVIDIA-Nemotron-Nano-9B-v2"
+
+model = AutoModelForCausalLM.from_pretrained(
+    MODEL,
+    device_map="auto",
+    dtype=torch.bfloat16,
+    use_kernels=True,
+)
+
+tokenizer = AutoTokenizer.from_pretrained(MODEL)
 
 llm = pipeline(
     "text-generation",
-    model="nvidia/NVIDIA-Nemotron-Nano-9B-v2",
-    device_map="auto",
-    dtype=torch.bfloat16,
+    model=model,
+    tokenizer=tokenizer,
 )
-
 
 # AI TOOLS
 
@@ -222,11 +232,14 @@ def research_webpages(trade, name, website, pages):
     notes = []
 
     for url in pages:
+        start = time.perf_counter()
+
         content = read_page(url)
 
         notes.append(
             ask(
                 "2_research_pages.md",
+                max_tokens=600,
                 trade=trade,
                 name=name,
                 website=website,
@@ -235,8 +248,10 @@ def research_webpages(trade, name, website, pages):
             )
         )
 
-    return notes
+        elapsed = time.perf_counter() - start
+        print(f"   ✓ {url} ({elapsed:.1f}s)")
 
+    return notes
 
 def save_report(file, content):
     Path(file).write_text(
@@ -245,28 +260,22 @@ def save_report(file, content):
     )
 
 def check_websites(results):
-    valid = []
 
-    for result in results:
+    def check_one(result):
+        url = result["url"]
+
         try:
             response = requests.get(
-                result["url"],
+                url,
                 headers=HEADERS,
-                timeout=20,
+                timeout=8,
             )
 
             if response.status_code != 200:
-                continue
+                return None
 
-            soup = BeautifulSoup(
-                response.text,
-                "html.parser",
-            )
-
-            text = soup.get_text(
-                " ",
-                strip=True,
-            )
+            soup = BeautifulSoup(response.text, "html.parser")
+            text = soup.get_text(" ", strip=True)
 
             blocked = [
                 "cloudflare",
@@ -280,18 +289,14 @@ def check_websites(results):
                 len(text) < 500
                 or any(word in text.lower() for word in blocked)
             ):
-                continue
+                return None
 
-            pages = discover_pages(
-                result["url"]
-            )
-
-            if len(pages) < 2:
-                continue
-
-            valid.append(result)
+            return result
 
         except requests.RequestException:
-            continue
+            return None
 
-    return valid
+    with ThreadPoolExecutor(max_workers=6) as executor:
+        checked = list(executor.map(check_one, results))
+
+    return [result for result in checked if result is not None]

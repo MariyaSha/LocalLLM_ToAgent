@@ -58,3 +58,6 @@ Only mention trust signals that are directly visible, such as:
 - partnerships
 - guarantees
 - clear contact information
+
+Before finalizing, check that the communication gaps do not
+contradict facts already presented in the overview.

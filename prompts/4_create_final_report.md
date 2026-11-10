@@ -18,6 +18,8 @@ does not exist.
 Do not recommend generic marketing tactics unless the research
 provides a specific competitive reason for them.
 
+Before finalizing the report, check that all comparisons, competitive gaps, and recommendations are consistent with the individual competitor research. Do not contradict evidence presented elsewhere in the report.
+
 Distinguish between:
 
 - things customers actually said in testimonials or reviews
@@ -56,8 +58,9 @@ For every competitor cover the most useful available information about:
 Base this section on what the competitors themselves emphasize in their
 website content.
 
-If customer testimonials or reviews are available, clearly separate
-customer evidence from company claims.
+If customer testimonials or reviews are available, clearly separate customer evidence from company claims.
+
+If social media profiles or digital tools were not found on the reviewed pages, do not conclude that the company does not have them.
 
 ## Opportunities to Outperform These Competitors
 
