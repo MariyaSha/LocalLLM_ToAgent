@@ -4,6 +4,12 @@ Build a semi-autonomous AI agent using Python and free, locally running AI model
 
 This project demonstrates how to combine **🐍 Python Logic**, **🧠 AI Decisions**, and **✨ AI Generation** to automate repetitive workflows without paid AI APIs.
 
+## 🎥 Video Tutorial
+
+This repository contains the source code and project files from my Python Simplified video tutorial. I walk you through this repo step by step, building the Quickstart code together:
+
+<a href="" target="_blank"><img width="600" alt="Turn Local LLM into AI Agent with Python" src="https://github.com/user-attachments/assets/e46db13c-f850-45e4-a662-f0f477fdfebc"/></a>
+
 ## ⚙️ Installation
 
 Clone the repository and install the dependencies:
@@ -51,3 +57,43 @@ To customize your research, edit `CITY` and `TRADE` at the top of `app.py`.
 💾 **Storage:** ~18 GB
 
 The agent generates `competitor_1.md`, `competitor_2.md`, and `market_research.md`.
+
+### Example Output
+
+Here's an example of the agent running on an **NVIDIA RTX 5090 (32 GB VRAM)**:
+
+```text
+🐍 Searching businesses...
+🧠 Choosing competitors...
+   ✓ Sundawn Integrated Services
+   ✓ Harbour Energy
+⏱ Competitors selected (5.8s)
+
+🐍 Exploring Sundawn Integrated Services...
+🧠 Choosing pages...
+   ✓ 10 pages selected (3.1s)
+✨ Researching pages...
+   ✓ https://sundawn.com (7.5s)
+   ✓ https://sundawn.com/about/ (13.1s)
+   ...
+✨ Creating competitor overview...
+🐍 Saved competitor_1.md (22.8s)
+
+🐍 Exploring Harbour Energy...
+🧠 Choosing pages...
+   ✓ 10 pages selected (2.8s)
+✨ Researching pages...
+   ✓ https://harbourenergy.ca (12.2s)
+   ✓ https://harbourenergy.ca/services (8.6s)
+   ...
+✨ Creating competitor overview...
+🐍 Saved competitor_2.md (25.3s)
+
+✨ Creating final market research report...
+🐍 Saved market_research.md (37.2s)
+
+✓ Research complete!
+⏱ Total execution time: 331.2s
+```
+
+**Total execution time: ~5.5 minutes**, excluding model initialization. Results and execution times will vary depending on your hardware and the websites being researched.
