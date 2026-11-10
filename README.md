@@ -38,7 +38,9 @@ A beginner-friendly Jupyter notebook that demonstrates a simple AI agent loop.
 
 Open `quickstart/Quickstart.ipynb` in Jupyter or VS Code and follow the cells step by step. Such that:
 
-bash```
+To launch JupyterLab from the correct directory:
+
+```bash
 cd quickstart
 jupyter lab
 ```
