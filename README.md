@@ -8,7 +8,7 @@ This project demonstrates how to combine **🐍 Python Logic**, **🧠 AI Decisi
 
 This repository contains the source code and project files from my Python Simplified video tutorial. I walk you through this repo step by step, building the Quickstart code together:
 
-<a href="" target="_blank"><img width="600" alt="Turn Local LLM into AI Agent with Python" src="https://github.com/user-attachments/assets/e46db13c-f850-45e4-a662-f0f477fdfebc"/></a>
+<a href="https://youtu.be/rYElE9GZudA" target="_blank"><img width="600" alt="Turn Local LLM into AI Agent with Python" src="https://github.com/user-attachments/assets/e46db13c-f850-45e4-a662-f0f477fdfebc"/></a>
 
 ## ⚙️ Installation
 
